@@ -149,3 +149,17 @@ body.music-open{overflow:hidden}
 @media(max-width:600px){.taste-anime{display:flex;align-items:flex-start}.taste-anime .taste-image-anime{aspect-ratio:16/10;object-fit:contain;background:#3a2c52}.taste-anime .taste-caption{margin-top:0;padding-top:14px}.taste-card>.taste-image,.taste-song-art{margin-top:13px}.music-heading{padding:20px}.music-footer{padding:16px 20px 20px}.music-heading h2{font-size:28px}.taste-card{padding:19px 13px}.taste-card h4{margin-top:16px}}
 @media(max-width:360px){.tastes-grid{gap:9px}.taste-card{padding:17px 10px}button.taste-listen{left:5px;right:5px;bottom:5px;font-size:9px;padding:8px 4px}.taste-song-art .taste-image{aspect-ratio:1/1}.music-heading .journey-overline{font-size:7px;letter-spacing:1.5px}}
 .music-player.is-spotify{aspect-ratio:auto;height:352px;background:#282828}
+
+/* A letter for Erika, with the poem's original words and line breaks. */
+.poem-section{margin-top:72px;text-align:center}
+.poem-section .distance-divider{margin-bottom:30px}
+#poem-title{font:500 clamp(32px,4.5vw,47px)/1.3 'Playfair Display',Georgia,serif;letter-spacing:-1px;margin:0 0 30px}
+.poem-letter{position:relative;max-width:650px;margin:0 auto;background:linear-gradient(145deg,#fff8fa,#fff0f5);border:1px solid #fffafb;border-radius:13px;padding:33px 34px 29px;box-shadow:0 15px 45px #92405f10;outline:1px solid #dca4bb55;outline-offset:-11px}
+.poem-ornament{display:block;font:29px Georgia,serif;color:#bc7894;margin-bottom:20px}
+.poem-verses{font:600 clamp(14px,1.85vw,19px)/1.95 'Playfair Display',Georgia,serif;color:#984463}
+.poem-verses p{margin:0 0 25px}
+.poem-verses p:last-child{margin-bottom:0}
+.poem-verses strong{font-weight:600}
+.poem-seal{display:block;font:28px Georgia,serif;color:#b45b80;margin-top:25px}
+@media(max-width:600px){.poem-section{margin-top:55px}.poem-letter{padding:28px 20px 25px}.poem-verses{font-size:15px;line-height:1.95}.poem-verses p{margin-bottom:24px}}
+@media(max-width:360px){.poem-letter{padding:27px 15px 24px;outline-offset:-8px}.poem-verses{font-size:13px;line-height:2}.poem-ornament{margin-bottom:17px}}
