@@ -30,33 +30,35 @@
   function line(x,y,a,b,color,width=2) { ctx.beginPath(); ctx.moveTo(x,y); ctx.lineTo(a,b); ctx.strokeStyle=color; ctx.lineWidth=width; ctx.lineCap='round'; ctx.stroke(); }
   function draw() {
     ctx.clearRect(0,0,W,H);
-    const wall=ctx.createLinearGradient(0,0,0,H);wall.addColorStop(0,'#fcecf2');wall.addColorStop(1,'#e9a9c2');ctx.fillStyle=wall;ctx.fillRect(0,0,W,H);
-    const scroll=elapsed*.13;
-    // Side-scrolling corridor: wall panels, lamps and floor move past the runner.
-    for(let i=-1;i<7;i++) {
-      const x=i*210-scroll%210;
-      ctx.fillStyle='#fff4f744';ctx.fillRect(x+12,30,182,345);
-      line(x,0,x,405,'#b8587e44',3);
-      ctx.fillStyle='#fff5d9';ctx.fillRect(x+85,65,35,12);
-      ctx.fillStyle='#b54f76';ctx.font='24px Georgia';ctx.textAlign='center';ctx.fillText('♡',x+103,190);
+    const sky=ctx.createLinearGradient(0,0,0,H); sky.addColorStop(0,'#fcecf2'); sky.addColorStop(1,'#efb5cc'); ctx.fillStyle=sky; ctx.fillRect(0,0,W,H);
+    polygon([[0,0],[340,160],[340,260],[0,H]],'#e6a1bb');
+    polygon([[W,0],[560,160],[560,260],[W,H]],'#d98fab');
+    polygon([[0,H],[340,260],[560,260],[W,H]],'#f8dce5');
+    ctx.fillStyle='#fff5f8'; ctx.fillRect(340,160,220,100);
+    // Perspective frames approach the camera to create a third-person corridor.
+    const travel=(elapsed / 1700)%1;
+    for(let i=0;i<9;i++) {
+      const depth=((i/9+travel)%1); const z=depth*depth;
+      const left=340-490*z, right=560+490*z, top=160-240*z, bottom=260+370*z;
+      line(left,top,left,bottom,'#b8587e55',3); line(right,top,right,bottom,'#b8587e55',3);
+      line(left,top,right,top,'#fff1f6aa',4); line(left,bottom,right,bottom,'#bd6d8c44');
     }
-    ctx.fillStyle='#f8dce5';ctx.fillRect(0,405,W,115);
-    line(0,405,W,405,'#be7593',4);line(0,460,W,460,'#c7859d55');
-    for(let i=-1;i<11;i++){const x=i*110-scroll%110;line(x,405,x-50,H,'#c7859d55');}
-    const runnerX=200+progress*340;
-    const cardX=790-progress*150;
-    ctx.fillStyle='#fff7fa';ctx.fillRect(cardX-48,233,96,96);
-    ctx.strokeStyle='#bf6d8c';ctx.lineWidth=2;ctx.strokeRect(cardX-42,239,84,84);
-    ctx.fillStyle='#ad416b';ctx.textAlign='center';ctx.font='32px Georgia';ctx.fillText('♡',cardX,280);
-    ctx.font='13px sans-serif';ctx.fillText(`${Math.min(station+1,5)} / 5`,cardX,309);
+    for (let i=1;i<6;i++) line(340+i*220/6,260,-180+i*1260/6,H,'#c7859d55');
+    ctx.textAlign='center'; ctx.fillStyle='#b54f76'; ctx.font='22px Georgia'; ctx.fillText('♡',450,203);
+    // The next message is a framed square at the side of the corridor.
+    const zoom=.35+progress*.9, cardX=530+progress*125, cardY=205+progress*60;
+    ctx.save(); ctx.translate(cardX,cardY); ctx.scale(zoom,zoom);
+    ctx.shadowColor='#a8517355';ctx.shadowBlur=20;ctx.fillStyle='#fff7fa';ctx.fillRect(-57,-57,114,114);ctx.shadowBlur=0;
+    ctx.strokeStyle='#bf6d8c';ctx.lineWidth=3;ctx.strokeRect(-50,-50,100,100);
+    ctx.fillStyle='#ad416b';ctx.font='36px Georgia';ctx.fillText('♡',0,1);ctx.font='13px sans-serif';ctx.fillText(`${Math.min(station+1,5)} / 5`,0,32);ctx.restore();
     const active=running && !paused && !reduced.matches;
     const pose=active ? [0,1,2,1][Math.floor(elapsed/100)%4] : 0;
-    ctx.fillStyle='#a55a7b33';ctx.beginPath();ctx.ellipse(runnerX,436,57,9,0,0,Math.PI*2);ctx.fill();
+    ctx.fillStyle='#a55a7b33';ctx.beginPath();ctx.ellipse(450,486,48,9,0,0,Math.PI*2);ctx.fill();
     if(character.complete && character.naturalWidth) {
       const cellH=character.naturalHeight, cellW=cellH*.83;
       const centers=[.215,.498,.803];
       ctx.drawImage(character,centers[pose]*character.naturalWidth-cellW/2,0,cellW,cellH,
-        runnerX-120,145,240,290);
+        330,192,240,290);
     }
   }
   function arrive() {
