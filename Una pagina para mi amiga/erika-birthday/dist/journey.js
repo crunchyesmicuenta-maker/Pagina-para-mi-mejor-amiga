@@ -147,7 +147,7 @@
     if (fraction >= 1) reset();
     fitRoute();
     restart.hidden = false;
-    status.textContent = 'En camino a Hernandarias, con mucho cariño…';
+    status.textContent = 'En camino hasta tu corazón, con mucho cariño…';
     // A still arrival preserves the interaction for visitors who reduce motion.
     if (reduceMotion.matches) { finish(); return; }
     running = true;
