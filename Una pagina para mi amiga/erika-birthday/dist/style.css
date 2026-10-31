@@ -75,3 +75,21 @@ button.journey-play:hover{background:#8e3558;border-color:#8e3558}
 @media(max-width:760px){.distance-section{margin-top:42px}.distance-divider{margin-bottom:38px}.journey-heading{padding:20px}.journey-country{font-size:8px;letter-spacing:1px}.journey-heading p{font-size:12px}.journey-dashboard{padding:20px}.journey-actions{align-items:flex-start;flex-direction:column;gap:13px}.journey-actions>div{width:100%;justify-content:space-between}.journey-actions p{min-height:20px}.map-views{right:12px;top:15px}.map-views button{padding:10px;font-size:9px}#friendship-map{height:390px}.arrival-message{min-height:205px}.distance-section .eyebrow{font-size:8px;letter-spacing:1.7px}}
 @media(max-width:400px){.journey-country{display:none}.journey-heading{padding:18px 16px}.journey-dashboard{padding:18px 16px}.desktop-break{display:none}.journey-actions button.journey-play{min-width:138px;padding:11px 12px}}
 @media(prefers-reduced-motion:reduce){.arrival-message{transform:none;transition:none}.travelling-heart span{animation:none}}
+
+/* Every second since the friendship began. */
+.friendship-section{max-width:790px;margin:0 auto 44px;text-align:center;padding:0 10px 35px}
+.friendship-section .distance-divider{margin-bottom:35px}
+.friendship-section .eyebrow{font-size:9px;letter-spacing:2.6px;line-height:1.8}
+#friendship-title{font:500 clamp(33px,4.8vw,51px)/1.25 'Playfair Display',Georgia,serif;letter-spacing:-1.5px;margin:16px 0}
+#friendship-title em{font-weight:500;color:#b54f76}
+.friendship-since{font-size:12px;color:var(--muted);line-height:1.9;margin:0 0 30px}
+.friendship-since time{white-space:nowrap}
+.friendship-counter{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
+.friendship-unit{background:linear-gradient(145deg,#fff7fa,#fbe9f0);border:1px solid #fffafb;border-radius:13px;box-shadow:0 8px 28px #92405f0d;padding:26px 10px 22px;display:flex;flex-direction:column;align-items:center;gap:13px}
+.friendship-number{font:500 clamp(34px,5.5vw,62px)/1.1 'Playfair Display',Georgia,serif;letter-spacing:-2px;font-variant-numeric:tabular-nums;color:#a44066;min-width:2ch}
+.friendship-label{font-size:9px;letter-spacing:2.2px;color:#a66a82}
+.friendship-note{font:italic 20px/1.6 'Playfair Display',Georgia,serif;color:#a25071;margin:28px 0 10px}
+.friendship-note>span{display:inline-block;margin-right:5px;font:22px Georgia,serif}
+.friendship-timezone{font-size:9px;letter-spacing:.6px;color:var(--muted);margin:0}
+@media(max-width:760px){.friendship-section{padding:0 0 20px;margin-bottom:30px}.friendship-counter{gap:9px}.friendship-unit{padding:23px 7px 19px}.friendship-label{font-size:8px;letter-spacing:1.2px}.friendship-note{font-size:18px}.friendship-since{font-size:11px}}
+@media(max-width:400px){.friendship-counter{gap:6px}.friendship-unit{padding:21px 5px 17px;border-radius:9px}.friendship-number{font-size:33px;letter-spacing:-1px}.friendship-label{font-size:7px;letter-spacing:.7px}.friendship-note{font-size:16px}#friendship-title{font-size:32px}.friendship-since time{white-space:normal}}
