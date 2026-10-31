@@ -78,30 +78,34 @@
 <div class="tastes-grid">
 <article class="taste-card taste-anime" aria-labelledby="taste-anime-title">
 <span class="taste-number">01 / ANIME</span>
-<div class="anime-doodle" aria-hidden="true"><svg viewBox="0 0 100 100"><path d="M21 27q15-6 29 3q14-9 29-3v48q-15-6-29 3q-14-9-29-3Z M50 30v48 M29 40l11 0 M29 48h11 M59 42l5-9l5 9l10 2l-8 7l2 11l-9-5l-9 5l2-11l-8-7Z"/></svg><span>✧</span></div>
+<img class="taste-image taste-image-anime" src="assets/gustos/hunter-1999.jpg" alt="Gon, Killua y Kurapika en Hunter × Hunter de 1999" loading="lazy" width="667" height="545">
 <h4 id="taste-anime-title">Hunter × Hunter</h4>
 <p class="taste-placeholder">Tu anime favorito ♡</p>
 <span class="taste-caption">Ese mundo al que siempre quieres volver.</span>
 </article>
 <article class="taste-card taste-band-one" aria-labelledby="taste-band-one-title">
 <div class="taste-card-top"><span class="taste-number">02 / BANDAS</span><span class="sound-doodle" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span></div>
+<img class="taste-image taste-image-band" src="assets/gustos/gorillaz.jpg" alt="Los cuatro integrantes animados de Gorillaz en la portada de Demon Days" loading="lazy" width="400" height="400">
 <h4 id="taste-band-one-title">Gorillaz</h4>
 <p class="taste-placeholder">Una banda que te gusta ♡</p>
 </article>
 <article class="taste-card taste-band-two" aria-labelledby="taste-band-two-title">
 <div class="taste-card-top"><span class="taste-number">03 / BANDAS</span><span class="sound-doodle" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span></div>
+<img class="taste-image taste-image-band" src="assets/gustos/rammstein.jpg" alt="Fotografía de los integrantes de Rammstein" loading="lazy" width="400" height="300">
 <h4 id="taste-band-two-title">Rammstein</h4>
 <p class="taste-placeholder">Otra banda que te gusta ♡</p>
 </article>
 <article class="taste-card taste-song-one" aria-labelledby="taste-song-one-title">
 <div class="taste-card-top"><span class="taste-number">04 / CANCIONES</span><span class="vinyl-doodle" aria-hidden="true"></span></div>
-<h4 id="taste-song-one-title">Primer opening de HxH</h4>
-<p class="taste-placeholder">Una canción que te fascina ♡</p>
+<div class="taste-song-art"><img class="taste-image" src="assets/gustos/ohayou.jpg" alt="Imagen del opening Ohayou de Hunter × Hunter de 1999" loading="lazy" width="480" height="360"><button type="button" class="taste-listen" data-song="ohayou" aria-label="Escuchar Ohayou de Keno"><span aria-hidden="true">▶</span> Escuchar</button></div>
+<h4 id="taste-song-one-title">Ohayou</h4>
+<p class="taste-placeholder">Keno · Primer opening de HxH (1999)</p>
 </article>
 <article class="taste-card taste-song-two" aria-labelledby="taste-song-two-title">
 <div class="taste-card-top"><span class="taste-number">05 / CANCIONES</span><span class="vinyl-doodle" aria-hidden="true"></span></div>
+<div class="taste-song-art"><img class="taste-image" src="assets/gustos/engel.jpg" alt="Imagen del video musical Engel de Rammstein" loading="lazy" width="480" height="360"><button type="button" class="taste-listen" data-song="engel" aria-label="Escuchar Engel de Rammstein"><span aria-hidden="true">▶</span> Escuchar</button></div>
 <h4 id="taste-song-two-title">Engel</h4>
-<p class="taste-placeholder">Rammstein · Una canción que te fascina ♡</p>
+<p class="taste-placeholder">Rammstein · Muestra en Spotify</p>
 </article>
 </div>
 <p class="tastes-signoff">Conocerte también es una de mis partes favoritas de esta amistad.</p>
@@ -110,8 +114,14 @@
 </main>
 <footer><span>HECHO CON MUCHO CARIÑO</span><span aria-hidden="true">♡</span><span>PARA LA MEJOR AMIGA DEL MUNDO</span></footer>
 <div id="confetti" aria-hidden="true"></div>
+<dialog class="music-dialog" id="music-dialog" aria-labelledby="music-title">
+<div class="music-heading"><div><span class="journey-overline">UNA CANCIÓN QUE TE FASCINA</span><h2 id="music-title"></h2><p id="music-artist"></p></div><button type="button" id="music-close" aria-label="Cerrar reproductor">×</button></div>
+<div class="music-player" id="music-player"></div>
+<div class="music-footer"><p id="music-note">Un ratito para escuchar lo que te encanta ♡</p><a id="music-external" target="_blank" rel="noopener noreferrer">Escuchar en YouTube ↗</a></div>
+</dialog>
 <script src="app.js"></script>
 <script src="assets/leaflet/leaflet.js" defer></script>
 <script src="journey.js" defer></script>
 <script src="friendship.js" defer></script>
+<script src="music.js" defer></script>
 </body></html>
