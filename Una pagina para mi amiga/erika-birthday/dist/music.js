@@ -1,6 +1,6 @@
 (() => {
   const songs = {
-    ohayou: {title: 'Ohayou', artist: 'Keno · Hunter × Hunter (1999)', video: 'lH5u3X6Aol4'},
+    departure: {title: 'departure!', artist: 'Masatoshi Ono · Hunter × Hunter (2011)', spotify: '3PPNbjI64T0t4Gl4PhUAmB'},
     engel: {title: 'Engel', artist: 'Rammstein', spotify: '4L58FgCh0T0WNG0UIqxK4E'}
   };
   const dialog = document.querySelector('#music-dialog');
