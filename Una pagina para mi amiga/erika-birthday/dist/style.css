@@ -93,3 +93,30 @@ button.journey-play:hover{background:#8e3558;border-color:#8e3558}
 .friendship-timezone{font-size:9px;letter-spacing:.6px;color:var(--muted);margin:0}
 @media(max-width:760px){.friendship-section{padding:0 0 20px;margin-bottom:30px}.friendship-counter{gap:9px}.friendship-unit{padding:23px 7px 19px}.friendship-label{font-size:8px;letter-spacing:1.2px}.friendship-note{font-size:18px}.friendship-since{font-size:11px}}
 @media(max-width:400px){.friendship-counter{gap:6px}.friendship-unit{padding:21px 5px 17px;border-radius:9px}.friendship-number{font-size:33px;letter-spacing:-1px}.friendship-label{font-size:7px;letter-spacing:.7px}.friendship-note{font-size:16px}#friendship-title{font-size:32px}.friendship-since time{white-space:normal}}
+
+/* Five little spaces for Erika's favorite things. */
+.tastes-section{margin-top:72px;text-align:center}
+.tastes-section .distance-divider{margin-bottom:32px}
+.tastes-section .eyebrow{font-size:8px;letter-spacing:2px}
+#tastes-title{max-width:620px;margin:17px auto;font:500 clamp(29px,4.5vw,43px)/1.3 'Playfair Display',Georgia,serif;letter-spacing:-1px;text-wrap:balance}
+#tastes-title em{font-weight:500;color:#b54f76}
+.tastes-intro{font-size:12px;color:var(--muted);line-height:1.9;margin:0 0 30px}
+.tastes-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));grid-template-areas:'anime band-one song-one' 'anime band-two song-two';gap:15px;text-align:left}
+.taste-card{min-width:0;border:1px solid #fffafb;border-radius:13px;padding:23px 20px;background:#fff4f8;box-shadow:0 7px 24px #92405f0a}
+.taste-anime{grid-area:anime;background:linear-gradient(155deg,#f0c5d6,#fce7ef);display:flex;flex-direction:column;align-items:flex-start}
+.taste-band-one{grid-area:band-one}.taste-band-two{grid-area:band-two}.taste-song-one{grid-area:song-one}.taste-song-two{grid-area:song-two}
+.taste-number{display:block;font-size:8px;letter-spacing:1.5px;color:#a76a83;line-height:1.6}
+.taste-card h4{font:500 17px/1.4 'Playfair Display',Georgia,serif;color:#963b5b;margin:19px 0 9px;text-wrap:balance}
+.taste-placeholder{margin:0;font-size:11px;color:#a96f86;line-height:1.7}
+.taste-caption{font-size:11px;line-height:1.9;color:#a3637c;display:block;margin-top:20px;max-width:180px}
+.taste-card-top{display:flex;align-items:center;justify-content:space-between;gap:8px;min-height:24px}
+.anime-doodle{position:relative;width:105px;margin:30px auto 5px;color:#ae6181}
+.anime-doodle svg{display:block;width:100%;fill:none;stroke:currentColor;stroke-width:1.4;stroke-linecap:round;stroke-linejoin:round;transform:rotate(-8deg)}
+.anime-doodle>span{position:absolute;right:-6px;top:-6px;font:28px Georgia,serif}
+.sound-doodle{display:flex;align-items:center;justify-content:center;gap:3px;height:23px;color:#c1829b;flex-shrink:0}
+.sound-doodle i{display:block;width:2px;height:9px;background:currentColor;border-radius:2px}
+.sound-doodle i:nth-child(2),.sound-doodle i:nth-child(4){height:17px}.sound-doodle i:nth-child(3){height:23px}
+.vinyl-doodle{display:block;width:25px;height:25px;border:1px solid #c1829b;border-radius:50%;position:relative;flex-shrink:0;background:radial-gradient(circle,transparent 2px,#c1829b 2px,#c1829b 3px,transparent 3px,transparent 7px,#c1829b44 7px,#c1829b44 8px,transparent 8px)}
+.tastes-signoff{font:italic 17px/1.8 'Playfair Display',Georgia,serif;color:#a6657f;margin:29px auto 0;max-width:440px}
+@media(max-width:600px){.tastes-section{margin-top:55px}.tastes-grid{grid-template-columns:repeat(2,minmax(0,1fr));grid-template-areas:'anime anime' 'band-one band-two' 'song-one song-two';gap:11px}.taste-anime{display:grid;grid-template-columns:1fr 95px;column-gap:15px}.taste-anime>.taste-number{grid-column:1}.taste-anime>.anime-doodle{grid-column:2;grid-row:1/5;width:90px;margin:auto}.taste-anime h4{grid-column:1;margin-top:12px}.taste-anime .taste-placeholder{grid-column:1}.taste-anime .taste-caption{grid-column:1;margin-top:12px;max-width:none}.taste-card{padding:21px 16px}.taste-card h4{font-size:16px}.tastes-intro{font-size:11px}.taste-number{font-size:7px;letter-spacing:1px}.tastes-signoff{font-size:16px}}
+@media(max-width:360px){.taste-card{padding:19px 12px}.taste-number{font-size:6px;letter-spacing:.8px}.taste-card-top{gap:5px}.sound-doodle{gap:2px}.taste-card h4{font-size:15px}.taste-placeholder{font-size:10px}.taste-anime .taste-caption{font-size:10px}.tastes-signoff{font-size:15px}}
