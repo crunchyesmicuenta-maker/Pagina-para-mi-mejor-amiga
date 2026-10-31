@@ -4,6 +4,7 @@
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#f7d5df"><meta name="description" content="Una pequeña sorpresa de cumpleaños para mi mejor amiga Erika Alfonzo.">
 <title>Feliz cumple, Erika ♡</title>
+<link rel="stylesheet" href="assets/leaflet/leaflet.css">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -30,8 +31,35 @@
 <button id="reveal" type="button">O toca aquí para descubrirlo <span aria-hidden="true">↗</span></button>
 <button id="reset" type="button" hidden>Volver a raspar <span aria-hidden="true">↻</span></button>
 </section>
+<section class="distance-section" id="distancia" aria-labelledby="distance-title">
+<div class="distance-divider" aria-hidden="true"><span></span>♡<span></span></div>
+<p class="eyebrow">LA AMISTAD NO ENTIENDE DE KILÓMETROS</p>
+<h2 id="distance-title">Distancia?... <em>Si claro</em></h2>
+<p class="distance-intro">De Asunción a Hernandarias, siempre cerquita.</p>
+<div class="journey-card">
+<div class="journey-heading"><span class="journey-mini-heart" aria-hidden="true">♡</span><div><span class="journey-overline">UN VIAJE HASTA TI</span><p>Asunción <span aria-hidden="true">⟶</span> Hernandarias</p></div><span class="journey-country">PARAGUAY</span></div>
+<div class="map-container">
+<div id="friendship-map" aria-label="Mapa interactivo de Paraguay con el recorrido de Asunción a Hernandarias"></div>
+<div class="map-loading" id="map-loading"><span aria-hidden="true">♡</span><p>Preparando nuestro camino…</p></div>
+<div class="map-views" aria-label="Vistas del mapa"><button type="button" id="country-view" disabled>Ver Paraguay</button><button type="button" id="route-view" disabled>Ver recorrido</button></div>
+</div>
+<div class="journey-dashboard">
+<div class="journey-endpoints"><span>Asunción</span><span id="journey-percent">0 %</span><span>Hernandarias</span></div>
+<progress id="journey-progress" max="100" value="0" aria-label="Progreso del recorrido"></progress>
+<div class="journey-actions"><p id="journey-status" role="status">Cargando el mapa…</p><div><button type="button" class="journey-play" id="journey-play" disabled>Comenzar viaje <span aria-hidden="true">↗</span></button><button type="button" id="journey-restart" hidden>Volver a empezar ↻</button></div></div>
+</div>
+</div>
+<p class="map-hint">Arrastra para explorar · Usa + y − para acercarte</p>
+<div class="arrival-message" id="arrival-message" aria-hidden="true">
+<span class="arrival-heart" aria-hidden="true">♡</span>
+<p>Que la distancia no apague<br class="desktop-break"> el fuego de esta amistad</p>
+<span class="arrival-caption">DE AQUÍ HASTA DONDE ESTÉS.</span>
+</div>
+</section>
 </main>
 <footer><span>HECHO CON MUCHO CARIÑO</span><span aria-hidden="true">♡</span><span>PARA LA MEJOR AMIGA DEL MUNDO</span></footer>
 <div id="confetti" aria-hidden="true"></div>
 <script src="app.js"></script>
+<script src="assets/leaflet/leaflet.js" defer></script>
+<script src="journey.js" defer></script>
 </body></html>
