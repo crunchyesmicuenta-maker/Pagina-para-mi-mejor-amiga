@@ -63,7 +63,7 @@
   }
   function arrive() {
     running=false; station++; count.textContent=`${station} / 5 mensajes`;
-    label.textContent=`${station===5?'ÚLTIMA PARADA':'PARADA '+station} · PARA TI, ERIKA`;
+    label.textContent=`${station===5?'ÚLTIMA PARADA':'PARADA '+station} · PARA VOSS MI CIELOOOO`;
     text.textContent=messages[station-1]; go.hidden=false; pause.hidden=true;
     go.textContent=station===5?'Volver a jugar ↻':'Seguir corriendo ⚡';
     hint.textContent=station===5?'Cinco mensajes entregados. Una amistad que sigue ♡':'Quédate el tiempo que quieras. La próxima sorpresa puede esperar.';
