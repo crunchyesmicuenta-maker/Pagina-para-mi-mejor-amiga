@@ -21,7 +21,7 @@
   const W = 900, H = 520;
   const character = new Image();
   character.onload = () => draw();
-  character.src = 'assets/killua-anime.png';
+  character.src = 'assets/killua-run-cycle.png';
   function polygon(points, fill, stroke) {
     ctx.beginPath(); points.forEach(([x,y], i) => i ? ctx.lineTo(x,y) : ctx.moveTo(x,y));
     ctx.closePath(); ctx.fillStyle = fill; ctx.fill();
@@ -51,30 +51,21 @@
     ctx.shadowColor='#a8517355';ctx.shadowBlur=20;ctx.fillStyle='#fff7fa';ctx.fillRect(-57,-57,114,114);ctx.shadowBlur=0;
     ctx.strokeStyle='#bf6d8c';ctx.lineWidth=3;ctx.strokeRect(-50,-50,100,100);
     ctx.fillStyle='#ad416b';ctx.font='36px Georgia';ctx.fillText('♡',0,1);ctx.font='13px sans-serif';ctx.fillText(`${Math.min(station+1,5)} / 5`,0,32);ctx.restore();
-    // Bend each leg independently below the shorts; opposite phases form a stride.
-    const stride=running && !paused && !reduced.matches ? Math.sin(elapsed/95) : 0;
+    // Six drawn poses: extension, bent-knee recovery and passing, for each leg.
+    const active=running && !paused && !reduced.matches;
+    const pose=active ? Math.floor(elapsed/90)%6 : 0;
+    const bounce=active ? Math.sin(elapsed/90*Math.PI/3)*2 : 0;
     ctx.save();
-    ctx.fillStyle='#a55a7b33';ctx.beginPath();ctx.ellipse(450,486,47-Math.abs(stride)*5,9,0,0,Math.PI*2);ctx.fill();
+    ctx.fillStyle='#a55a7b33';ctx.beginPath();ctx.ellipse(450,486,43,8,0,0,Math.PI*2);ctx.fill();
     if(character.complete && character.naturalWidth) {
-      ctx.translate(450+stride*3,482-Math.abs(stride)*10);
-      ctx.rotate(stride*.025);
-      const height=275, width=height*character.naturalWidth/character.naturalHeight;
-      const sw=character.naturalWidth, sh=character.naturalHeight;
-      const hip=Math.round(sh*.64), split=Math.round(sw*.58), scale=height/sh;
-      ctx.translate(-width/2,-height);
-      ctx.drawImage(character,0,0,sw,hip,0,0,width,hip*scale);
-      for (const leg of [{x:0,w:split,phase:stride},{x:split,w:sw-split,phase:-stride}]) {
-        const stretch=1+leg.phase*.16;
-        // Thin contiguous strips keep the hip attached while the knee and shoe swing.
-        for(let y=hip;y<sh;y+=2) {
-          const slice=Math.min(2,sh-y);
-          const bend=(y-hip)/(sh-hip);
-          const swing=leg.phase*width*.14*bend*bend;
-          ctx.drawImage(character,leg.x,y,leg.w,slice,
-            leg.x*scale+swing,hip*scale+(y-hip)*scale*stretch,
-            leg.w*scale,slice*scale*stretch+.35);
-        }
-      }
+      const scale=275/512;
+      const centers=[320,790,1260,310,790,1255];
+      const sourceX=centers[pose]-180, sourceY=pose<3?0:512;
+      const left=450-180*scale, top=207+bounce;
+      // Keep the face looking over the same shoulder as the limbs alternate.
+      ctx.drawImage(character,140,0,360,195,left,top,360*scale,195*scale);
+      ctx.drawImage(character,sourceX,sourceY+195,360,317,
+        left,top+195*scale,360*scale,317*scale);
     }
     ctx.restore();
   }
