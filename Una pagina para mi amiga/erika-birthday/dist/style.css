@@ -163,3 +163,22 @@ body.music-open{overflow:hidden}
 .poem-seal{display:block;font:28px Georgia,serif;color:#b45b80;margin-top:25px}
 @media(max-width:600px){.poem-section{margin-top:55px}.poem-letter{padding:28px 20px 25px}.poem-verses{font-size:15px;line-height:1.95}.poem-verses p{margin-bottom:24px}}
 @media(max-width:360px){.poem-letter{padding:27px 15px 24px;outline-offset:-8px}.poem-verses{font-size:13px;line-height:2}.poem-ornament{margin-bottom:17px}}
+
+/* Mini-Killua's five-message adventure. */
+.killua-section{max-width:900px;margin:76px auto 0;text-align:center;padding:0 16px}
+.killua-section h2{font-family:'Playfair Display',serif;font-size:clamp(30px,4.5vw,48px);font-weight:500;margin:18px 0;color:#963b5b}
+.killua-section>p:not(.eyebrow){font-size:14px;line-height:1.8;max-width:520px;margin:0 auto 26px}
+.killua-panel{background:#fff6f9;border:1px solid #df9fb8;border-radius:20px;overflow:hidden;box-shadow:0 16px 45px #963b5b12}
+.killua-hud{display:flex;justify-content:space-between;gap:12px;padding:18px 23px;font-size:11px;letter-spacing:1.5px;color:#963b5b}
+#killua-canvas{position:relative;inset:auto;display:block;width:100%;height:auto;aspect-ratio:900/520;background:#f8dce5;touch-action:auto;cursor:default;border-radius:0}
+.killua-message{min-height:140px;padding:24px 25px 12px;display:flex;flex-direction:column;justify-content:center}
+.killua-message>span{font-size:10px;letter-spacing:2px;color:#b54f76}
+.killua-message>p{font-family:'Playfair Display',serif;font-size:clamp(19px,2.6vw,25px);line-height:1.6;margin:12px auto;max-width:630px;color:#963b5b}
+.killua-controls{display:flex;justify-content:center;flex-wrap:wrap;gap:12px;padding:10px 18px}
+.killua-controls button{border:1px solid #b54f76;border-radius:30px;background:#b54f76;color:white;padding:13px 23px;font:inherit;font-size:13px;cursor:pointer}
+.killua-controls button:hover{background:#963b5b}
+.killua-controls button:focus-visible{outline:3px solid #7063ac;outline-offset:4px}
+.killua-controls #killua-reset{background:transparent;color:#963b5b}
+.killua-controls button[hidden]{display:none}
+.killua-hint{font-size:11px;line-height:1.7;padding:0 22px 19px;opacity:.8}
+@media(max-width:600px){.killua-section{padding:0;margin-top:55px}.killua-hud{padding:14px 12px;font-size:9px;letter-spacing:.6px}.killua-message{padding:20px 17px 6px;min-height:180px}.killua-controls button{padding:12px 18px}}

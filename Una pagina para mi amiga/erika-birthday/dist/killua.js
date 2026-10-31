@@ -1,0 +1,100 @@
+(() => {
+  const canvas = document.getElementById('killua-canvas');
+  const ctx = canvas.getContext('2d');
+  if (!ctx) return;
+  const go = document.getElementById('killua-go');
+  const pause = document.getElementById('killua-pause');
+  const reset = document.getElementById('killua-reset');
+  const label = document.getElementById('killua-label');
+  const text = document.getElementById('killua-text');
+  const count = document.getElementById('killua-count');
+  const hint = document.getElementById('killua-hint');
+  const messages = [
+    'Erika, tu sonrisa tiene ese poder bonito de convertir un día cualquiera en un recuerdo especial.',
+    'No tienes que ser perfecta para ser increíble. Ser tú ya es una de las cosas más bonitas de este mundo.',
+    'Aunque haya kilómetros entre nosotros, siempre tendrás cerquita mi cariño y un lugar en mi vida.',
+    'Ojalá hoy te mires con el mismo cariño con el que yo te veo: valiente, única y merecedora de cosas hermosas.',
+    'Si pudiera elegir de nuevo con quién cruzarme en la vida, volvería a elegir nuestra amistad. Gracias por existir, amika ♡'
+  ];
+  const reduced = matchMedia('(prefers-reduced-motion: reduce)');
+  let station = 0, progress = 0, elapsed = 0, running = false, paused = false, last = 0, frame = 0;
+  const W = 900, H = 520;
+  function polygon(points, fill, stroke) {
+    ctx.beginPath(); points.forEach(([x,y], i) => i ? ctx.lineTo(x,y) : ctx.moveTo(x,y));
+    ctx.closePath(); ctx.fillStyle = fill; ctx.fill();
+    if (stroke) { ctx.strokeStyle = stroke; ctx.lineWidth = 2; ctx.stroke(); }
+  }
+  function line(x,y,a,b,color,width=2) { ctx.beginPath(); ctx.moveTo(x,y); ctx.lineTo(a,b); ctx.strokeStyle=color; ctx.lineWidth=width; ctx.lineCap='round'; ctx.stroke(); }
+  function draw() {
+    ctx.clearRect(0,0,W,H);
+    const sky=ctx.createLinearGradient(0,0,0,H); sky.addColorStop(0,'#fcecf2'); sky.addColorStop(1,'#efb5cc'); ctx.fillStyle=sky; ctx.fillRect(0,0,W,H);
+    polygon([[0,0],[340,160],[340,260],[0,H]],'#e6a1bb');
+    polygon([[W,0],[560,160],[560,260],[W,H]],'#d98fab');
+    polygon([[0,H],[340,260],[560,260],[W,H]],'#f8dce5');
+    ctx.fillStyle='#fff5f8'; ctx.fillRect(340,160,220,100);
+    // Perspective frames approach the camera to create a third-person corridor.
+    const travel=(elapsed / 1700)%1;
+    for(let i=0;i<9;i++) {
+      const depth=((i/9+travel)%1); const z=depth*depth;
+      const left=340-490*z, right=560+490*z, top=160-240*z, bottom=260+370*z;
+      line(left,top,left,bottom,'#b8587e55',3); line(right,top,right,bottom,'#b8587e55',3);
+      line(left,top,right,top,'#fff1f6aa',4); line(left,bottom,right,bottom,'#bd6d8c44');
+    }
+    for (let i=1;i<6;i++) line(340+i*220/6,260,-180+i*1260/6,H,'#c7859d55');
+    ctx.textAlign='center'; ctx.fillStyle='#b54f76'; ctx.font='22px Georgia'; ctx.fillText('♡',450,203);
+    // The next message is a framed square at the side of the corridor.
+    const zoom=.35+progress*.9, cardX=530+progress*125, cardY=205+progress*60;
+    ctx.save(); ctx.translate(cardX,cardY); ctx.scale(zoom,zoom);
+    ctx.shadowColor='#a8517355';ctx.shadowBlur=20;ctx.fillStyle='#fff7fa';ctx.fillRect(-57,-57,114,114);ctx.shadowBlur=0;
+    ctx.strokeStyle='#bf6d8c';ctx.lineWidth=3;ctx.strokeRect(-50,-50,100,100);
+    ctx.fillStyle='#ad416b';ctx.font='36px Georgia';ctx.fillText('♡',0,1);ctx.font='13px sans-serif';ctx.fillText(`${Math.min(station+1,5)} / 5`,0,32);ctx.restore();
+    // Chibi Killua, rear view: silver spikes, lilac shirt, dark shorts, blue shoes.
+    const stride=running && !reduced.matches ? Math.sin(elapsed/95) : 0;
+    ctx.save();ctx.translate(450,385+Math.abs(stride)*-5);
+    ctx.fillStyle='#a55a7b33';ctx.beginPath();ctx.ellipse(0,101,51,10,0,0,Math.PI*2);ctx.fill();
+    line(-18,52,-22+stride*11,88,'#f4d9d1',15);line(18,52,22-stride*11,88,'#f4d9d1',15);
+    line(-24+stride*11,92,-11+stride*11,94,'#546eab',16);line(13-stride*11,94,27-stride*11,92,'#546eab',16);
+    polygon([[-32,25],[32,25],[30,61],[4,62],[0,45],[-5,62],[-31,61]],'#34324e');
+    line(-32,-18,-45,-1+stride*14,'#44405e',15);line(-45,-1+stride*14,-43,20+stride*14,'#f4d9d1',11);
+    line(32,-18,45,-1-stride*14,'#44405e',15);line(45,-1-stride*14,43,20-stride*14,'#f4d9d1',11);
+    polygon([[-28,-36],[28,-36],[38,-9],[27,-4],[29,34],[-29,34],[-27,-4],[-38,-9]],'#b4a5d8','#766791');
+    line(-13,-32,13,-32,'#45405e',9);
+    ctx.fillStyle='#f4d9d1';ctx.beginPath();ctx.ellipse(0,-56,36,34,0,0,Math.PI*2);ctx.fill();
+    polygon([[-34,-37],[-47,-53],[-35,-56],[-51,-73],[-32,-70],[-40,-91],[-20,-81],[-19,-104],[-4,-89],[8,-111],[17,-89],[35,-101],[31,-80],[49,-87],[39,-66],[51,-61],[36,-49],[28,-32],[14,-40],[0,-30],[-12,-40],[-25,-31]],'#f1f4ff','#b3b5d0');
+    line(-29,-71,-15,-60,'#d0d6eb');line(21,-80,13,-64,'#d0d6eb');
+    ctx.restore();
+  }
+  function arrive() {
+    running=false; station++; count.textContent=`${station} / 5 mensajes`;
+    label.textContent=`${station===5?'ÚLTIMA PARADA':'PARADA '+station} · PARA TI, ERIKA`;
+    text.textContent=messages[station-1]; go.hidden=false; pause.hidden=true;
+    go.textContent=station===5?'Volver a jugar ↻':'Seguir corriendo ⚡';
+    hint.textContent=station===5?'Cinco mensajes entregados. Una amistad que sigue ♡':'Quédate el tiempo que quieras. La próxima sorpresa puede esperar.';
+  }
+  function tick(now) {
+    frame=0;
+    if(!running || paused) return;
+    const delta=last ? Math.min(now-last,60) : 0; last=now;
+    elapsed+=delta; progress=Math.min(1,progress+delta/4200); draw();
+    if(progress>=1) arrive(); else frame=requestAnimationFrame(tick);
+  }
+  function schedule() { cancelAnimationFrame(frame);last=0;frame=requestAnimationFrame(tick); }
+  function restart() {
+    cancelAnimationFrame(frame);running=false;paused=false;station=0;progress=0;elapsed=0;
+    count.textContent='0 / 5 mensajes';label.textContent='ENTREGA ESPECIAL PARA ERIKA';
+    text.textContent='Un pasillo, cinco sorpresas y muchas ganas de verte feliz.';
+    go.hidden=false;go.textContent='Comenzar aventura ⚡';pause.hidden=true;reset.hidden=true;
+    hint.textContent='Killua corre solo y se detiene en cada mensaje. Tú decides cuándo continuar.';draw();
+  }
+  go.addEventListener('click',()=>{
+    if(station===5) restart();
+    running=true;paused=false;progress=0;go.hidden=true;pause.hidden=false;pause.textContent='Pausar';reset.hidden=false;
+    label.textContent='EN CAMINO';text.textContent='Killua está llevando un poquito de cariño hasta ti…';
+    if(reduced.matches) { progress=1;draw();arrive(); } else schedule();
+  });
+  pause.addEventListener('click',()=>{paused=!paused;pause.textContent=paused?'Continuar':'Pausar';if(paused)cancelAnimationFrame(frame);else schedule();});
+  reset.addEventListener('click',restart);
+  document.addEventListener('visibilitychange',()=>{if(document.hidden && running && !paused){paused=true;cancelAnimationFrame(frame);pause.textContent='Continuar';}});
+  new IntersectionObserver(entries=>{if(!entries[0].isIntersecting && running && !paused){paused=true;cancelAnimationFrame(frame);pause.textContent='Continuar';}}).observe(document.querySelector('.killua-panel'));
+  draw();
+})();
