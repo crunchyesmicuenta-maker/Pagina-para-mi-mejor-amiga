@@ -165,6 +165,11 @@ body.music-open{overflow:hidden}
 @media(max-width:360px){.poem-letter{padding:27px 15px 24px;outline-offset:-8px}.poem-verses{font-size:13px;line-height:2}.poem-ornament{margin-bottom:17px}}
 
 /* Mini-Killua's five-message adventure. */
+.our-game-section{max-width:950px;margin:76px auto 0;text-align:center}
+.our-game-section h2{max-width:750px;margin:24px auto 30px;font-family:'Playfair Display',serif;font-size:clamp(28px,4vw,43px);font-weight:500;line-height:1.35;color:var(--ink);text-wrap:balance}
+.our-game-memory{margin:0;padding:12px;background:#fff6f9;border:1px solid #df9fb8;border-radius:20px;box-shadow:0 16px 45px #963b5b12}
+.our-game-memory img{display:block;width:100%;height:auto;border-radius:11px}
+@media(max-width:600px){.our-game-section{margin-top:55px}.our-game-memory{padding:6px;border-radius:13px}.our-game-memory img{border-radius:8px}}
 .killua-section{max-width:900px;margin:76px auto 0;text-align:center;padding:0 16px}
 .killua-section h2{font-family:'Playfair Display',serif;font-size:clamp(30px,4.5vw,48px);font-weight:500;margin:18px 0;color:#963b5b}
 .killua-section>p:not(.eyebrow){font-size:14px;line-height:1.8;max-width:520px;margin:0 auto 26px}
