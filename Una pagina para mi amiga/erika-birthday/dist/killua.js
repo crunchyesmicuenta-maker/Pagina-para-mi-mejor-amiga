@@ -19,6 +19,9 @@
   const reduced = matchMedia('(prefers-reduced-motion: reduce)');
   let station = 0, progress = 0, elapsed = 0, running = false, paused = false, last = 0, frame = 0;
   const W = 900, H = 520;
+  const character = new Image();
+  character.onload = () => draw();
+  character.src = 'assets/killua-anime.png';
   function polygon(points, fill, stroke) {
     ctx.beginPath(); points.forEach(([x,y], i) => i ? ctx.lineTo(x,y) : ctx.moveTo(x,y));
     ctx.closePath(); ctx.fillStyle = fill; ctx.fill();
@@ -48,20 +51,16 @@
     ctx.shadowColor='#a8517355';ctx.shadowBlur=20;ctx.fillStyle='#fff7fa';ctx.fillRect(-57,-57,114,114);ctx.shadowBlur=0;
     ctx.strokeStyle='#bf6d8c';ctx.lineWidth=3;ctx.strokeRect(-50,-50,100,100);
     ctx.fillStyle='#ad416b';ctx.font='36px Georgia';ctx.fillText('♡',0,1);ctx.font='13px sans-serif';ctx.fillText(`${Math.min(station+1,5)} / 5`,0,32);ctx.restore();
-    // Chibi Killua, rear view: silver spikes, lilac shirt, dark shorts, blue shoes.
-    const stride=running && !reduced.matches ? Math.sin(elapsed/95) : 0;
-    ctx.save();ctx.translate(450,385+Math.abs(stride)*-5);
-    ctx.fillStyle='#a55a7b33';ctx.beginPath();ctx.ellipse(0,101,51,10,0,0,Math.PI*2);ctx.fill();
-    line(-18,52,-22+stride*11,88,'#f4d9d1',15);line(18,52,22-stride*11,88,'#f4d9d1',15);
-    line(-24+stride*11,92,-11+stride*11,94,'#546eab',16);line(13-stride*11,94,27-stride*11,92,'#546eab',16);
-    polygon([[-32,25],[32,25],[30,61],[4,62],[0,45],[-5,62],[-31,61]],'#34324e');
-    line(-32,-18,-45,-1+stride*14,'#44405e',15);line(-45,-1+stride*14,-43,20+stride*14,'#f4d9d1',11);
-    line(32,-18,45,-1-stride*14,'#44405e',15);line(45,-1-stride*14,43,20-stride*14,'#f4d9d1',11);
-    polygon([[-28,-36],[28,-36],[38,-9],[27,-4],[29,34],[-29,34],[-27,-4],[-38,-9]],'#b4a5d8','#766791');
-    line(-13,-32,13,-32,'#45405e',9);
-    ctx.fillStyle='#f4d9d1';ctx.beginPath();ctx.ellipse(0,-56,36,34,0,0,Math.PI*2);ctx.fill();
-    polygon([[-34,-37],[-47,-53],[-35,-56],[-51,-73],[-32,-70],[-40,-91],[-20,-81],[-19,-104],[-4,-89],[8,-111],[17,-89],[35,-101],[31,-80],[49,-87],[39,-66],[51,-61],[36,-49],[28,-32],[14,-40],[0,-30],[-12,-40],[-25,-31]],'#f1f4ff','#b3b5d0');
-    line(-29,-71,-15,-60,'#d0d6eb');line(21,-80,13,-64,'#d0d6eb');
+    // Illustrated anime sprite with a light running bounce and alternating lean.
+    const stride=running && !paused && !reduced.matches ? Math.sin(elapsed/95) : 0;
+    ctx.save();
+    ctx.fillStyle='#a55a7b33';ctx.beginPath();ctx.ellipse(450,486,47-Math.abs(stride)*5,9,0,0,Math.PI*2);ctx.fill();
+    if(character.complete && character.naturalWidth) {
+      ctx.translate(450+stride*3,482-Math.abs(stride)*10);
+      ctx.rotate(stride*.025);
+      const height=275, width=height*character.naturalWidth/character.naturalHeight;
+      ctx.drawImage(character,-width/2,-height,width,height);
+    }
     ctx.restore();
   }
   function arrive() {
