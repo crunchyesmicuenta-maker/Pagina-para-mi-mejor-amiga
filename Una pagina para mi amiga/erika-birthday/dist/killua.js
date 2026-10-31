@@ -51,7 +51,7 @@
     ctx.shadowColor='#a8517355';ctx.shadowBlur=20;ctx.fillStyle='#fff7fa';ctx.fillRect(-57,-57,114,114);ctx.shadowBlur=0;
     ctx.strokeStyle='#bf6d8c';ctx.lineWidth=3;ctx.strokeRect(-50,-50,100,100);
     ctx.fillStyle='#ad416b';ctx.font='36px Georgia';ctx.fillText('♡',0,1);ctx.font='13px sans-serif';ctx.fillText(`${Math.min(station+1,5)} / 5`,0,32);ctx.restore();
-    // Illustrated anime sprite with a light running bounce and alternating lean.
+    // Bend each leg independently below the shorts; opposite phases form a stride.
     const stride=running && !paused && !reduced.matches ? Math.sin(elapsed/95) : 0;
     ctx.save();
     ctx.fillStyle='#a55a7b33';ctx.beginPath();ctx.ellipse(450,486,47-Math.abs(stride)*5,9,0,0,Math.PI*2);ctx.fill();
@@ -59,7 +59,22 @@
       ctx.translate(450+stride*3,482-Math.abs(stride)*10);
       ctx.rotate(stride*.025);
       const height=275, width=height*character.naturalWidth/character.naturalHeight;
-      ctx.drawImage(character,-width/2,-height,width,height);
+      const sw=character.naturalWidth, sh=character.naturalHeight;
+      const hip=Math.round(sh*.64), split=Math.round(sw*.58), scale=height/sh;
+      ctx.translate(-width/2,-height);
+      ctx.drawImage(character,0,0,sw,hip,0,0,width,hip*scale);
+      for (const leg of [{x:0,w:split,phase:stride},{x:split,w:sw-split,phase:-stride}]) {
+        const stretch=1+leg.phase*.16;
+        // Thin contiguous strips keep the hip attached while the knee and shoe swing.
+        for(let y=hip;y<sh;y+=2) {
+          const slice=Math.min(2,sh-y);
+          const bend=(y-hip)/(sh-hip);
+          const swing=leg.phase*width*.14*bend*bend;
+          ctx.drawImage(character,leg.x,y,leg.w,slice,
+            leg.x*scale+swing,hip*scale+(y-hip)*scale*stretch,
+            leg.w*scale,slice*scale*stretch+.35);
+        }
+      }
     }
     ctx.restore();
   }
@@ -69,6 +84,7 @@
     text.textContent=messages[station-1]; go.hidden=false; pause.hidden=true;
     go.textContent=station===5?'Volver a jugar ↻':'Seguir corriendo ⚡';
     hint.textContent=station===5?'Cinco mensajes entregados. Una amistad que sigue ♡':'Quédate el tiempo que quieras. La próxima sorpresa puede esperar.';
+    draw();
   }
   function tick(now) {
     frame=0;
