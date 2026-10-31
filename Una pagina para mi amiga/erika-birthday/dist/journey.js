@@ -49,7 +49,7 @@
     update(1);
     play.innerHTML = 'Repetir viaje <span aria-hidden="true">↻</span>';
     restart.hidden = true;
-    status.textContent = 'Llegamos a Hernandarias. Siempre cerquita de ti ♡';
+    status.textContent = 'Yaaa lleguee hasta vosshhh. Siempre cerquita de ti ♡';
     arrival.classList.add('arrived');
     arrival.setAttribute('aria-hidden', 'false');
     if (typeof celebrate === 'function') celebrate();
@@ -80,7 +80,7 @@
     update(0);
     restart.hidden = true;
     play.innerHTML = 'Comenzar viaje <span aria-hidden="true">↗</span>';
-    status.textContent = 'Todo listo. ¿Vamos de visita?';
+    status.textContent = 'Ya estasss??? ¿Voy junto a vos :3?';
   }
 
   async function initialize() {

@@ -10,11 +10,11 @@
   const count = document.getElementById('killua-count');
   const hint = document.getElementById('killua-hint');
   const messages = [
-    'Erika, tu sonrisa tiene ese poder bonito de convertir un día cualquiera en un recuerdo especial.',
+    'Mi tesorooo... tu sonrisa tiene ese poder bonito de convertir un día cualquiera en un recuerdo especial.',
     'No tienes que ser perfecta para ser increíble. Ser tú ya es una de las cosas más bonitas de este mundo.',
     'Aunque haya kilómetros entre nosotros, siempre tendrás cerquita mi cariño y un lugar en mi vida.',
     'Ojalá hoy te mires con el mismo cariño con el que yo te veo: valiente, única y merecedora de cosas hermosas.',
-    'Si pudiera elegir de nuevo con quién cruzarme en la vida, volvería a elegir nuestra amistad. Gracias por existir, amika ♡'
+    'Si pudiera elegir de nuevo con quién cruzarme en la vida, volvería a elegir nuestra amistad. Gracias por existir, amikiitaaaa ♡'
   ];
   const reduced = matchMedia('(prefers-reduced-motion: reduce)');
   let station = 0, progress = 0, elapsed = 0, running = false, paused = false, last = 0, frame = 0;
