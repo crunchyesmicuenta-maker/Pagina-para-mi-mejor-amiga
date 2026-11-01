@@ -158,6 +158,37 @@ eres mi hogar, mi refugio y mi paz</strong></p>
 <img src="assets/juego.png" alt="Captura de ¡Adivina mi país!, el juego de Roblox donde nos conocimos" loading="lazy" width="1050" height="395">
 </figure>
 </section>
+<section class="promise-section" id="promesa" aria-labelledby="promise-title">
+<div class="distance-divider" aria-hidden="true"><span></span>♡<span></span></div>
+<h2 id="promise-title">Conmigo por siempre, en las buenas y en las malas? ;3, Me prometes??? :)</h2>
+<div class="promise-card">
+<p id="promise-instruction">Acerca tu mano a la mía y unamos nuestros meñiques ♡</p>
+<svg class="promise-hands" id="promise-hands" viewBox="0 0 600 310" aria-labelledby="promise-art-title">
+<title id="promise-art-title">Una mano espera a la izquierda. Arrastra la mano derecha para unir los meñiques.</title>
+<defs>
+<linearGradient id="promise-skin" x2=".8" y2="1"><stop stop-color="#ffeadb"/><stop offset="1" stop-color="#edbaab"/></linearGradient>
+<g id="promise-hand-drawing" fill="url(#promise-skin)" stroke="#ae7177" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round">
+<path id="promise-hand-palm" d="M22 222 L21 174 C2 153 4 119 17 103 L24 77 Q31 62 43 70 Q49 75 45 91 L42 105 L55 62 Q61 46 73 52 Q82 57 77 75 L68 107 L84 64 Q91 48 103 56 Q111 62 104 78 L94 111 L117 110 L140 38 Q146 19 159 23 Q173 27 167 46 L151 115 Q165 137 151 160 L131 183 L128 222 Z"/>
+<path d="M25 121 Q32 100 49 113 L87 136 Q103 147 93 160 Q86 169 71 160 L46 148"/>
+<path d="M48 107 Q51 122 68 126 M75 106 Q78 121 94 124 M98 108 L119 121" fill="none" stroke="#c78b8b"/>
+<path d="M143 46 L160 51 M138 65 L155 70 M44 170 Q70 184 100 177" fill="none" stroke="#d89c96"/>
+<path d="M19 211 L132 211 L132 253 L14 253 Z" fill="#c68da7" stroke="#ad6c8c"/>
+<path d="M23 223 L127 223 M23 234 L127 234" fill="none" stroke="#ebc1d2"/>
+</g>
+</defs>
+<ellipse cx="300" cy="284" rx="220" ry="12" fill="#d5a0b5" opacity=".15"/>
+<use href="#promise-hand-drawing" transform="translate(50 25)"/>
+<g id="promise-moving-hand" role="button" tabindex="0" aria-label="Mover mi mano para hacer la promesa. Usa las flechas o pulsa Enter."><use href="#promise-hand-drawing" transform="translate(550 25) scale(-1 1)"/></g>
+<g class="promise-seal-art" aria-hidden="true"><path d="M204 66 C190 35 215 28 225 47 C237 28 262 40 246 65 C232 85 211 85 204 66"/><text x="226" y="24" text-anchor="middle">♡</text></g>
+<text class="promise-hand-label" x="120" y="305" text-anchor="middle">MI MANO</text><text class="promise-hand-label" x="480" y="305" text-anchor="middle" id="promise-your-label">TU MANO ↔</text>
+</svg>
+<button type="button" class="promise-join" id="promise-join">Unir nuestros meñiques ♡</button>
+<p class="promise-result" id="promise-result" role="status" aria-live="polite"></p>
+<p class="promise-notice" id="promise-notice" role="status" aria-live="polite">Al hacer la promesa, me llegará un aviso por correo ♡</p>
+<button type="button" id="promise-retry" class="promise-retry" hidden>Reintentar el aviso</button>
+</div>
+<noscript><p>Activa JavaScript para unir nuestros meñiques.</p></noscript>
+</section>
 </main>
 <footer><span>HECHO CON MUCHO CARIÑO</span><span aria-hidden="true">♡</span><span>PARA LA MEJOR AMIGA DEL MUNDO</span></footer>
 <div id="confetti" aria-hidden="true"></div>
@@ -172,4 +203,5 @@ eres mi hogar, mi refugio y mi paz</strong></p>
 <script src="friendship.js" defer></script>
 <script src="music.js" defer></script>
 <script src="killua.js" defer></script>
+<script src="promise.js" defer></script>
 </body></html>
