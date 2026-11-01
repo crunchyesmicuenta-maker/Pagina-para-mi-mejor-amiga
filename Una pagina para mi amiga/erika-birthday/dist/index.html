@@ -166,20 +166,21 @@ eres mi hogar, mi refugio y mi paz</strong></p>
 <svg class="promise-hands" id="promise-hands" viewBox="0 0 640 420" aria-labelledby="promise-art-title">
 <title id="promise-art-title">Una mano espera a la izquierda. Arrastra la mano derecha para unir los meñiques.</title>
 <defs>
-<path id="promise-left-outline" d="M0 470 L0 270 L23 236 L31 156 L77 103 L139 56 Q154 73 147 96 L165 112 L165 130 L187 151 L213 174 L207 198 L271 160 Q287 150 298 164 Q308 178 291 191 L205 266 L165 310 L119 335 L0 470 Z"/>
-<clipPath id="promise-left-clip"><use href="#promise-left-outline"/></clipPath>
-<mask id="promise-right-mask" maskUnits="userSpaceOnUse" x="0" y="0" width="512" height="512" style="mask-type:luminance">
-<rect width="512" height="512" fill="white"/>
-<use href="#promise-left-outline" fill="black"/>
-</mask>
+<clipPath id="promise-left-clip" clipPathUnits="userSpaceOnUse">
+<path d="M-10 -10 H212 V151 L217 183 L200 208 L270 158 Q287 147 301 162 Q313 179 296 195 L211 268 L165 316 L119 343 L-10 480 Z"/>
+</clipPath>
+<clipPath id="promise-right-clip" clipPathUnits="userSpaceOnUse">
+<path d="M360 -10 H522 V522 H350 L275 245 L275 222 L304 199 L303 178 L323 148 L343 126 L343 100 Z"/>
+</clipPath>
 </defs>
-<g transform="translate(80 0) scale(.8)" aria-hidden="true">
-<image href="assets/promesa-menique.png" width="512" height="512" clip-path="url(#promise-left-clip)"/>
-</g>
 <g id="promise-moving-hand" role="button" tabindex="0" aria-label="Arrastrar mi mano para unir los meñiques. También puedes usar las flechas del teclado.">
 <g transform="translate(204 0) scale(.8)">
-<image href="assets/promesa-menique.png" width="512" height="512" mask="url(#promise-right-mask)"/>
+<path class="promise-yellow-pinky" d="M315 199 L240 162 Q228 154 221 164 Q214 174 227 185 L309 249 L338 232 Z" fill="#ffdda1" stroke="#59170d" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+<image href="assets/promesa-menique.png" width="512" height="512" clip-path="url(#promise-right-clip)"/>
 </g>
+</g>
+<g transform="translate(80 0) scale(.8)" aria-hidden="true" pointer-events="none">
+<image href="assets/promesa-menique.png" width="512" height="512" clip-path="url(#promise-left-clip)"/>
 </g>
 <g class="promise-seal-art" aria-hidden="true"><text x="285" y="98" text-anchor="middle">♡</text></g>
 <text class="promise-hand-label" x="160" y="405" text-anchor="middle">MI MANO</text>
@@ -206,5 +207,5 @@ eres mi hogar, mi refugio y mi paz</strong></p>
 <script src="friendship.js" defer></script>
 <script src="music.js" defer></script>
 <script src="killua.js" defer></script>
-<script src="promise.js?v=5" defer></script>
+<script src="promise.js?v=6" defer></script>
 </body></html>
