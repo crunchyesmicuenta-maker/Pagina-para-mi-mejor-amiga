@@ -4,7 +4,39 @@ const progress=document.createElement('div');progress.className='reading-progres
 let queued=false;function update(){const total=document.documentElement.scrollHeight-innerHeight;progress.style.transform='scaleX('+ (total>0?Math.min(1,scrollY/total):0)+')';queued=false}addEventListener('scroll',()=>{if(!queued){queued=true;requestAnimationFrame(update)}},{passive:true});addEventListener('resize',update);update();
 if(!reduced.matches && 'IntersectionObserver' in window){const observer=new IntersectionObserver(entries=>{entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('is-visible');observer.unobserve(entry.target)}})},{threshold:.08});document.querySelectorAll('main > section:not(.birthday),.taste-card,.poem-section').forEach((el,i)=>{el.classList.add('reveal-ready');el.style.setProperty('--reveal-delay',el.matches('.taste-card')?(i%3)*65+'ms':'0ms');observer.observe(el)});}
 const title=document.getElementById('title');
-if(title&&!reduced.matches){title.classList.add('title-lit');for(const name of ['first','second']){const spark=document.createElement('i');spark.className='title-fuse '+name;spark.setAttribute('aria-hidden','true');title.append(spark)}setTimeout(()=>title.querySelectorAll('.title-fuse').forEach(el=>el.remove()),5000)}
+if(title&&!reduced.matches){
+  const lines=[...title.children].filter(el=>el.matches('span,em'));
+  const original=lines.map(el=>el.textContent);
+  title.setAttribute('aria-label',original.join(' '));
+  title.classList.add('title-letter-lit');
+  const letters=[];
+  lines.forEach(line=>{
+    line.setAttribute('aria-hidden','true');
+    const text=line.textContent;line.textContent='';
+    for(const character of Array.from(text)){
+      const letter=document.createElement('span');letter.className='fuse-letter';letter.textContent=character===' '?'\u00a0':character;line.append(letter);letters.push(letter);
+    }
+  });
+  const ember=document.createElement('i');ember.className='letter-ember';ember.setAttribute('aria-hidden','true');title.append(ember);
+  let stopped=false;
+  const finish=()=>{stopped=true;letters.forEach(letter=>letter.classList.add('letter-on'));ember.remove();title.classList.add('title-complete')};
+  reduced.addEventListener('change',finish,{once:true});
+  async function ignite(){
+    if(document.fonts)await document.fonts.ready;
+    if(stopped)return;
+    for(const letter of letters){
+      if(stopped)return;
+      const bounds=letter.getBoundingClientRect(),base=title.getBoundingClientRect();
+      ember.style.left=(bounds.left-base.left+bounds.width*.5)+'px';
+      ember.style.top=(bounds.top-base.top+bounds.height*.68)+'px';
+      ember.classList.add('ember-on');
+      letter.classList.add('letter-on');
+      await new Promise(resolve=>setTimeout(resolve,145));
+    }
+    finish();
+  }
+  ignite();
+}
 if(!reduced.matches&&'IntersectionObserver' in window){const images=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('image-visible');images.unobserve(entry.target)}}),{threshold:.12});document.querySelectorAll('.taste-card img,.our-game-section img,.poem-section img').forEach(img=>{img.classList.add('image-arrival');images.observe(img)})}
 const card=document.querySelector('.promise-card'),section=document.querySelector('.promise-section');if(!card||!section)return;
 let played=false;
