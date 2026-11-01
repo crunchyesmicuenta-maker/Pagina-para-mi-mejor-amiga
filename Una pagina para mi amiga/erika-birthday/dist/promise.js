@@ -38,7 +38,7 @@
   }
   function seal() {
     if (sealed) return;
-    sealed = true; drag = null; x = -100; y = 0; render();
+    sealed = true; drag = null; x = -124; y = 0; render();
     card.classList.add('is-sealed'); hand.setAttribute('aria-disabled', 'true'); hand.setAttribute('tabindex', '-1');
     document.getElementById('promise-hand-palm').setAttribute('d', 'M5 250 L65 187 Q76 166 81 126 Q82 103 99 91 L111 68 Q118 57 128 62 Q137 67 131 80 L143 73 Q155 69 160 82 L163 92 Q179 87 184 104 L185 117 L201 109 Q213 102 221 111 Q227 119 220 126 Q212 133 203 126 L180 153 Q168 174 147 181 L114 200 L48 266');
 
@@ -55,8 +55,8 @@
   });
   hand.addEventListener('pointermove', event => {
     if (!drag || event.pointerId !== drag.id || sealed) return;
-    const p = point(event); x = Math.max(-125, Math.min(15, p.x - drag.x)); y = Math.max(-35, Math.min(45, p.y - drag.y)); render();
-    if (Math.abs(x + 96) < 18 && Math.abs(y) < 18) { card.classList.remove('is-dragging'); seal(); }
+    const p = point(event); x = Math.max(-145, Math.min(15, p.x - drag.x)); y = Math.max(-35, Math.min(45, p.y - drag.y)); render();
+    if (Math.abs(x + 116) < 18 && Math.abs(y) < 18) { card.classList.remove('is-dragging'); seal(); }
   });
   function release() { drag = null; card.classList.remove('is-dragging'); }
   hand.addEventListener('pointerup', release); hand.addEventListener('pointercancel', release); hand.addEventListener('lostpointercapture', release);
@@ -65,8 +65,8 @@
 
     const moves = {ArrowLeft: [-16,0], ArrowRight: [16,0], ArrowUp: [0,-12], ArrowDown: [0,12]};
     if (!moves[event.key]) return; event.preventDefault();
-    x = Math.max(-125,Math.min(15,x + moves[event.key][0])); y = Math.max(-35,Math.min(45,y + moves[event.key][1])); render();
-    if (Math.abs(x + 96) < 18 && Math.abs(y) < 18) seal();
+    x = Math.max(-145,Math.min(15,x + moves[event.key][0])); y = Math.max(-35,Math.min(45,y + moves[event.key][1])); render();
+    if (Math.abs(x + 116) < 18 && Math.abs(y) < 18) seal();
   });
   retry.addEventListener('click', notify);
 
