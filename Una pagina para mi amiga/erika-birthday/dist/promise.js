@@ -40,7 +40,6 @@
     if (sealed) return;
     sealed = true; drag = null; x = -124; y = 0; render();
     card.classList.add('is-sealed'); hand.setAttribute('aria-disabled', 'true'); hand.setAttribute('tabindex', '-1');
-    document.getElementById('promise-hand-palm').setAttribute('d', 'M5 250 L65 187 Q76 166 81 126 Q82 103 99 91 L111 68 Q118 57 128 62 Q137 67 131 80 L143 73 Q155 69 160 82 L163 92 Q179 87 184 104 L185 117 L201 109 Q213 102 221 111 Q227 119 220 126 Q212 133 203 126 L180 153 Q168 174 147 181 L114 200 L48 266');
 
     document.getElementById('promise-instruction').textContent = 'Nuestros meñiques ya están unidos ♡';
     document.getElementById('promise-result').textContent = 'Promesa sellada. En las buenas y en las malas, contigo ♡';
