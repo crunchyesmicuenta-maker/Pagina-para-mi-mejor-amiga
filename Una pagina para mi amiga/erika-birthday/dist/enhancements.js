@@ -19,7 +19,7 @@ if(title&&!reduced.matches){
   });
   const ember=document.createElement('i');ember.className='letter-ember';ember.setAttribute('aria-hidden','true');title.append(ember);
   let stopped=false;
-  const finish=()=>{stopped=true;letters.forEach(letter=>letter.classList.add('letter-on'));ember.remove();title.classList.add('title-complete')};
+  const finish=()=>{stopped=true;lines.forEach((line,index)=>{line.textContent=original[index];line.removeAttribute('aria-hidden')});ember.remove();title.classList.add('title-complete')};
   reduced.addEventListener('change',finish,{once:true});
   async function ignite(){
     if(document.fonts)await document.fonts.ready;
