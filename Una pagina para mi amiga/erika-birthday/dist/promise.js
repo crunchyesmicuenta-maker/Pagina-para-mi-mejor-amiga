@@ -31,7 +31,7 @@
       });
       const data = await response.json();
       if (!response.ok || (data.success !== true && data.success !== 'true')) throw new Error('Delivery not accepted');
-      delivered = true; notice.textContent = 'Aviso enviado con cariño ♡';
+      delivered = true; notice.textContent = 'Promesa hecha con mucho cariño ♡';
     } catch {
       notice.textContent = 'La promesa está sellada. El aviso no pudo enviarse todavía.'; retry.hidden = false;
     } finally { sending = false; }
