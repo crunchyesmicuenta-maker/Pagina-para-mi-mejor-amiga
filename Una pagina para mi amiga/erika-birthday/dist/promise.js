@@ -2,7 +2,7 @@
   const svg = document.getElementById('promise-hands');
   const hand = document.getElementById('promise-moving-hand');
   const card = document.querySelector('.promise-card');
-  const join = document.getElementById('promise-join');
+
   const retry = document.getElementById('promise-retry');
   const notice = document.getElementById('promise-notice');
   const key = 'erika-pinky-promise-v1';
@@ -40,16 +40,15 @@
   }
   function seal(restoring = false) {
     if (sealed) return;
-    sealed = true; drag = null; x = -178; y = 0; render();
+    sealed = true; drag = null; x = -106; y = 0; render();
     card.classList.add('is-sealed'); hand.setAttribute('aria-disabled', 'true'); hand.setAttribute('tabindex', '-1');
-    document.getElementById('promise-hand-palm').setAttribute('d', 'M22 222 L21 174 C2 153 4 119 17 103 L24 77 Q31 62 43 70 Q49 75 45 91 L42 105 L55 62 Q61 46 73 52 Q82 57 77 75 L68 107 L84 64 Q91 48 103 56 Q111 62 104 78 L94 111 L117 110 L140 38 Q145 15 163 20 Q181 25 177 44 L174 55 Q170 66 160 60 Q154 56 158 47 L161 39 Q162 35 157 36 L151 115 Q165 137 151 160 L131 183 L128 222 Z');
-    join.hidden = true;
+    document.getElementById('promise-hand-palm').setAttribute('d', 'M5 250 L65 187 Q76 166 81 126 Q82 103 99 91 L111 68 Q118 57 128 62 Q137 67 131 80 L143 73 Q155 69 160 82 L163 92 Q179 87 184 104 L185 117 L201 109 Q207 96 218 101 Q232 107 226 123 Q222 134 211 132 Q203 129 208 122 Q214 124 216 119 Q220 110 214 111 L180 153 Q168 174 147 181 L114 200 L48 266');
+
     document.getElementById('promise-instruction').textContent = 'Nuestros meñiques ya están unidos ♡';
     document.getElementById('promise-result').textContent = 'Promesa sellada. En las buenas y en las malas, contigo ♡';
     document.getElementById('promise-your-label').textContent = 'PARA SIEMPRE ♡';
     if (!restoring) save({...read(), sealed: true, date: new Date().toISOString()});
-    if (!restoring || read().sent || ['localhost', '127.0.0.1'].includes(location.hostname)) notify();
-    else { notice.textContent = 'Tu promesa sigue guardada. Puedes reintentar el aviso.'; retry.hidden = false; }
+    notify();
   }
   hand.addEventListener('pointerdown', event => {
     if (sealed) return;
@@ -58,19 +57,19 @@
   });
   hand.addEventListener('pointermove', event => {
     if (!drag || event.pointerId !== drag.id || sealed) return;
-    const p = point(event); x = Math.max(-210, Math.min(15, p.x - drag.x)); y = Math.max(-35, Math.min(45, p.y - drag.y)); render();
-    if (Math.abs(x + 188) < 28 && Math.abs(y) < 28) { card.classList.remove('is-dragging'); seal(); }
+    const p = point(event); x = Math.max(-125, Math.min(15, p.x - drag.x)); y = Math.max(-35, Math.min(45, p.y - drag.y)); render();
+    if (Math.abs(x + 96) < 18 && Math.abs(y) < 18) { card.classList.remove('is-dragging'); seal(); }
   });
   function release() { drag = null; card.classList.remove('is-dragging'); }
   hand.addEventListener('pointerup', release); hand.addEventListener('pointercancel', release); hand.addEventListener('lostpointercapture', release);
   hand.addEventListener('keydown', event => {
     if (sealed) return;
-    if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); seal(); return; }
+
     const moves = {ArrowLeft: [-16,0], ArrowRight: [16,0], ArrowUp: [0,-12], ArrowDown: [0,12]};
     if (!moves[event.key]) return; event.preventDefault();
-    x = Math.max(-210,Math.min(15,x + moves[event.key][0])); y = Math.max(-35,Math.min(45,y + moves[event.key][1])); render();
-    if (Math.abs(x + 188) < 28 && Math.abs(y) < 28) seal();
+    x = Math.max(-125,Math.min(15,x + moves[event.key][0])); y = Math.max(-35,Math.min(45,y + moves[event.key][1])); render();
+    if (Math.abs(x + 96) < 18 && Math.abs(y) < 18) seal();
   });
-  join.addEventListener('click', () => seal()); retry.addEventListener('click', notify);
+  retry.addEventListener('click', notify);
   if (read().sealed) seal(true);
 })();
